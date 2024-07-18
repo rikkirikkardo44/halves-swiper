@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "strict": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "ES6",
+    "jsx": "react",
+    "allowJs": true,
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "useUnknownInCatchVariables": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@styles/*": [
+        "src/shared/styles/*"
+      ],
+      "@src/*": [
+        "src/*"
+      ],
+      "@packageSrc": [
+        "package.json"
+      ],
+      "@processes/*": [
+        "src/processes/*"
+      ]
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ]
+  },
+  "include": [
+    "src",
+    "@types",
+    "api-codegen.ts"
+  ]
+}
