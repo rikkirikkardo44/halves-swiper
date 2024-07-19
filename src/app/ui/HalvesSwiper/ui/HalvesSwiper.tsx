@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 
 import type { SwipeEvent, DefaultSwiperData, ClickEvent } from '../types';
+import 'swiper/scss';
 import '../styles.scss';
 
 import { ImageSwiper } from './ImageSwiper';

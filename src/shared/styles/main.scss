@@ -7,6 +7,7 @@ body {
   position: relative;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
+  overflow: hidden;
 }
 
 #app {
@@ -19,6 +20,6 @@ body {
 
 .sandbox-container {
   border: 2px solid #336699;
-  height: 600px;
+  height: 500px;
   width: 500px;
 }
