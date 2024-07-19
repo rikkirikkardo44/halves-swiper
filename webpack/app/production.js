@@ -17,7 +17,7 @@ module.exports = merge(commonConfig, {
   output: {
     path: getConfig('appDist'),
     filename: '[name]-[fullhash].js',
-    publicPath: '/showcase/',
+    publicPath: '/',
     clean: true,
   },
   optimization: {
