@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { HalvesSwiper } from './HalvesSwiper';
+import { HalvesSwiper, ClickEvent, SwipeEvent } from './HalvesSwiper';
 
 type ExternalType = {
   id: number;
@@ -76,8 +76,43 @@ const mockForRight: ExternalType[] = [
  * Приложение
  * @returns - компонент
  */
-export const App: React.FC = () => (
-  <div className="sandbox-container">
-    <HalvesSwiper right={mockForRight} left={mockForLeft} />
-  </div>
-);
+export const App: React.FC = () => {
+  const [currentChoice, setCurrentChoice] = useState<SwipeEvent['value']>([
+    mockForLeft[0],
+    mockForRight[0],
+  ]);
+
+  const [clickedImage, setClickedImages] = useState<ExternalType | null>(null);
+
+  const handleChange = ({ value }: SwipeEvent): void => {
+    setCurrentChoice(value);
+  };
+
+  const handleClick = ({ value }: ClickEvent<ExternalType>): void => {
+    setClickedImages(value);
+  };
+
+  return (
+    <div className="sandbox-container">
+      <div className="flex align-center justify-center gap4">
+        <span>Selected:</span>
+        <img src={currentChoice[0]?.image} alt="" height={'100px'} />
+        <img src={currentChoice[1]?.image} alt="" height={'100px'} />
+      </div>
+
+      <div className="flex align-center justify-center gap4">
+        <span>Clicked:</span>
+        <img src={clickedImage?.image} alt="" height={'100px'} />
+      </div>
+
+      <div className="swiper-container">
+        <HalvesSwiper
+          right={mockForRight}
+          left={mockForLeft}
+          onClick={handleClick}
+          onChange={handleChange}
+        />
+      </div>
+    </div>
+  );
+};

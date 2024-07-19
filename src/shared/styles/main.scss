@@ -20,6 +20,36 @@ body {
 
 .sandbox-container {
   border: 2px solid #336699;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 800px;
+}
+
+.swiper-container {
   height: 500px;
   width: 500px;
+}
+
+.flex {
+  display: flex;
+}
+
+.align {
+  &-center {
+    align-items: center;
+  }
+}
+
+.justify {
+  &-center {
+    justify-content: center;
+  }
+}
+
+.gap {
+  &4 {
+    gap: 4px;
+  }
 }
