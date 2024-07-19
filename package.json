@@ -6,7 +6,7 @@
     "start": "npm run develop",
     "build": "npm run production",
     "develop": "webpack serve --config ./webpack/app/develop",
-    "production": "webpack --config ./webpack/app/production",
+    "production": "webpack --config ./webpack/app/develop",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:ts": "eslint src --color --ext .tsx,.ts --fix"
   },
