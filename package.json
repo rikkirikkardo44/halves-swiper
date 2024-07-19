@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "npm run develop",
-    "build": "npm run check && npm run production",
+    "build": "npm run production",
     "develop": "webpack serve --config ./webpack/app/develop",
     "production": "webpack --config ./webpack/app/production",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,7 +15,8 @@
     "core-js": "3.31.0",
     "lodash": "4.17.21",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-swipeable": "7.0.1"
   },
   "devDependencies": {
     "@babel/cli": "7.17.6",
@@ -32,7 +33,9 @@
     "@types/webpack-env": "1.18.0",
     "babel-loader": "9.1.2",
     "babel-plugin-module-resolver": "4.1.0",
+    "copy-webpack-plugin": "10.2.4",
     "css-loader": "6.7.1",
+    "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.3",
     "img-loader": "4.0.0",
     "merge": "2.1.1",

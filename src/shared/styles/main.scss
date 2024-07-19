@@ -9,3 +9,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.sandbox-container {
+  border: 2px solid #336699;
+  height: 700px;
+  width: 500px;
+}

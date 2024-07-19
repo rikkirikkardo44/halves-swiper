@@ -1,0 +1,1 @@
+export { HalvesSwiper } from './HalvesSwiper';

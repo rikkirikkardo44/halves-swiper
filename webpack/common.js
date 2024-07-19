@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const getConfig = require('./config');
 
 module.exports = {
@@ -32,6 +33,14 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public',
+          filter: (filepath) => !filepath.includes('index.html'),
+        },
+      ],
     }),
   ],
 };
