@@ -48,7 +48,6 @@ export const ImageSwiper = <T extends DefaultSwiperData>({
       slidesPerView={1}
       lazyPreloadPrevNext={1}
       normalizeSlideIndex={false}
-      onSwiper={(swiper: any) => console.log(swiper)}
       onSlideChange={handleChange}
       onSliderMove={handleMove}
       onClick={handleClick}
