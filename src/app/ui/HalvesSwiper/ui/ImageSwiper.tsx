@@ -57,10 +57,10 @@ export const ImageSwiper = <T extends DefaultSwiperData>({
     // onTouchEndOrOnMouseUp: console.log,
     // onTouchStartOrOnMouseDown: console.log,
 
-    delta: 10, // Threshold for considering it a swipe
+    // delta: 10, // Threshold for considering it a swipe
     // swipeDuration: 500,
-    preventScrollOnSwipe: true,
-    trackMouse: false,
+    // preventScrollOnSwipe: true,
+    trackMouse: true,
   });
 
   const nextIndex = (currentIndex + 1) % images.length;
