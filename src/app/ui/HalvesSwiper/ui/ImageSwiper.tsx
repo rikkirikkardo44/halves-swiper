@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react';
 
 import type { DefaultSwiperData } from '../types';
@@ -19,12 +19,11 @@ export const ImageSwiper = <T extends DefaultSwiperData>({
   onClick,
 }: Props<T>) => {
   const [isSliding, setIsSliding] = useState(false);
-
-  let prevIndex = 0;
+  const prevIndex = useRef(0);
 
   const handleChange = (event: SwiperClass): void => {
-    if (event.realIndex !== prevIndex) {
-      prevIndex = event.realIndex;
+    if (event.realIndex !== prevIndex.current) {
+      prevIndex.current = event.realIndex;
       onChange(images[event.realIndex]);
     }
     setIsSliding(false);
