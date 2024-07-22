@@ -4,6 +4,8 @@ export type DefaultSwiperData = {
   id: string | number;
   /** Ссылка на изображение */
   image: string;
+  /** Альтернативное название */
+  alt?: string;
 };
 
 /** Эвент свайпа */

@@ -1,4 +1,4 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, useCallback, useRef } from 'react';
 
 import type { SwipeEvent, DefaultSwiperData, ClickEvent } from '../types';
 import 'swiper/scss';
@@ -16,57 +16,78 @@ type Props<T extends DefaultSwiperData = DefaultSwiperData> = {
   onChange?: (event: SwipeEvent<T>) => void;
   /** Обработчик клика */
   onClick?: (event: ClickEvent<T>) => void;
+  /** Призак использования UI кнопок */
+  withControls?: boolean;
 };
 
 /**
  * Компонент выбора из двух половинок
  * @returns - jsx-element
  */
-export const HalvesSwiper = <T extends DefaultSwiperData>({
+const HalvesSwiperComponent = <T extends DefaultSwiperData>({
   left,
   right,
   onClick,
   onChange,
+  withControls,
 }: Props<T>) => {
   const activeLeft = useRef(left[0]);
   const activeRight = useRef(right[0]);
 
-  const handleLeftChange = (value: T): void => {
-    activeLeft.current = value;
+  const handleLeftChange = useCallback(
+    (value: T): void => {
+      activeLeft.current = value;
 
-    onChange?.({
-      value: [value, activeRight.current],
-    });
-  };
+      onChange?.({
+        value: [value, activeRight.current],
+      });
+    },
+    [onChange],
+  );
 
-  const handleRightChange = (value: T): void => {
-    activeRight.current = value;
+  const handleRightChange = useCallback(
+    (value: T): void => {
+      activeRight.current = value;
 
-    onChange?.({
-      value: [activeLeft.current, value],
-    });
-  };
+      onChange?.({
+        value: [activeLeft.current, value],
+      });
+    },
+    [onChange],
+  );
 
-  const handleClick = (value: T): void => {
-    onClick?.({ value });
-  };
+  const handleClick = useCallback(
+    (value: T): void => {
+      onClick?.({ value });
+    },
+    [onClick],
+  );
 
   return (
     <div className="halves-swiper">
       <div className="half">
         <ImageSwiper
+          position="left"
           images={left}
           onChange={handleLeftChange}
           onClick={handleClick}
+          withControls={withControls}
         />
       </div>
       <div className="half">
         <ImageSwiper
+          position="right"
           images={right}
           onChange={handleRightChange}
           onClick={handleClick}
+          withControls={withControls}
         />
       </div>
     </div>
   );
 };
+
+/** Мемоизированный компонент */
+export const HalvesSwiper = memo(
+  HalvesSwiperComponent,
+) as typeof HalvesSwiperComponent;

@@ -1,18 +1,16 @@
 .halves-swiper {
   display: flex;
+  justify-content: center;
   width: 100%;
   height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
   overflow: hidden;
   gap: 4px;
 }
 
 .half {
   width: 50%;
-}
-
-.swiper-container {
-  width: 100%;
-  height: 100%;
 }
 
 //.slide-image {
@@ -28,4 +26,49 @@
   opacity: 0.5;
   transform: scale(0.90);
   transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.swipe-button {
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.swiper {
+  [slot=container-start], [slot=container-end] {
+    position: absolute;
+    z-index: 5;
+  }
+
+  [slot=container-start] {
+    top: 5%;
+  }
+
+  [slot=container-end] {
+    bottom: 5%;
+  }
+
+  &.position {
+    &--left {
+      [slot=container-start] {
+        left: 5%;
+      }
+
+      [slot=container-end] {
+        left: 5%;
+      }
+    }
+
+    &--right {
+      [slot=container-start] {
+        right: 5%;
+      }
+
+      [slot=container-end] {
+        right: 5%;
+      }
+    }
+  }
 }

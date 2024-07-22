@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import { TABLET_SIZE } from '@shared/constants';
+import { useIsMobile } from '@shared/hooks';
+
 import { HalvesSwiper, ClickEvent, SwipeEvent } from './HalvesSwiper';
 
 type ExternalType = {
@@ -84,6 +87,8 @@ export const App: React.FC = () => {
 
   const [clickedImage, setClickedImages] = useState<ExternalType | null>(null);
 
+  const isTablet = useIsMobile(TABLET_SIZE);
+
   const handleChange = ({ value }: SwipeEvent): void => {
     setCurrentChoice(value);
   };
@@ -111,6 +116,7 @@ export const App: React.FC = () => {
           left={mockForLeft}
           onClick={handleClick}
           onChange={handleChange}
+          withControls={!isTablet}
         />
       </div>
     </div>
