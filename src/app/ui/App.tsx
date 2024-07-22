@@ -131,8 +131,8 @@ export const App: React.FC = () => {
   });
 
   const [currentChoice, setCurrentChoice] = useState<SwipeEvent['value']>([
-    mockForLeft[0],
-    mockForRight[0],
+    images.left[0],
+    images.right[0],
   ]);
   const [clickedImage, setClickedImages] = useState<ExternalType | null>(null);
 
@@ -148,17 +148,24 @@ export const App: React.FC = () => {
     setClickedImages(value);
   };
 
+  const handleImageShuffle = () => {
+    setImages({
+      left: shuffleArray(mockForLeft),
+      right: shuffleArray(mockForRight),
+    });
+  };
+
   return (
     <div className="sandbox-container">
       <div className="flex align-center justify-center gap4 margin-bottom-8">
         <span>Left:</span>
         {images.left.map(({ image, id }) => (
-          <img src={image} alt={id.toString()} height={'35px'} />
+          <img key={id} src={image} alt={id.toString()} height={'35px'} />
         ))}
 
         <span>Right:</span>
         {images.right.map(({ image, id }) => (
-          <img src={image} alt={id.toString()} height={'35px'} />
+          <img key={id} src={image} alt={id.toString()} height={'35px'} />
         ))}
       </div>
 
@@ -182,16 +189,7 @@ export const App: React.FC = () => {
           withControls={!isTablet}
         />
       </div>
-      <button
-        onClick={() => {
-          setImages({
-            left: shuffleArray(mockForLeft),
-            right: shuffleArray(mockForRight),
-          });
-        }}
-      >
-        Shuffle images
-      </button>
+      <button onClick={handleImageShuffle}>Shuffle images</button>
     </div>
   );
 };

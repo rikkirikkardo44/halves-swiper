@@ -1,19 +1,19 @@
 import React from 'react';
 
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 
 import { App } from './app';
 
 import '@shared/styles/main.scss';
 
-export const render = (): void => {
+export const renderApp = (): void => {
   const app = document.getElementById('app');
 
   if (!app) {
     throw new Error();
   }
 
-  ReactDOM.createRoot(app).render(<App />);
+  ReactDOM.render(<App />, app);
 };
 
-window.addEventListener('load', render);
+window.addEventListener('load', renderApp);

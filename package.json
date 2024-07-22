@@ -14,8 +14,8 @@
   "dependencies": {
     "core-js": "3.31.0",
     "lodash": "4.17.21",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "swiper": "11.1.5"
   },
   "devDependencies": {
@@ -27,8 +27,8 @@
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.11",
     "@types/lodash": "4.17.1",
     "@types/node": "^20",
-    "@types/react": "18.2.41",
-    "@types/react-dom": "18.2.5",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
     "@types/webpack": "5.28.2",
     "@types/webpack-env": "1.18.0",
     "babel-loader": "9.1.2",

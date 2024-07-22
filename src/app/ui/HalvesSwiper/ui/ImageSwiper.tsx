@@ -1,4 +1,4 @@
-import React, { type CSSProperties, memo, useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react';
 
 import type { DefaultSwiperData } from '../types';
@@ -17,10 +17,6 @@ type Props<T extends DefaultSwiperData = DefaultSwiperData> = {
   position: 'left' | 'right';
   /** Признак использования UI кнопок */
   withControls?: boolean;
-  /** Стили */
-  style: CSSProperties;
-  /** Обработчик изменения высоты изображения */
-  onImageHeightChange: (height: number) => void;
 };
 
 /** Компонент вертикального свайпа изображения */
@@ -30,8 +26,6 @@ const ImageSwiperComponent = <T extends DefaultSwiperData>({
   onClick,
   position,
   withControls,
-  onImageHeightChange,
-  style,
 }: Props<T>) => {
   const [isSliding, setIsSliding] = useState(false);
   const prevIndex = useRef(0);
@@ -54,22 +48,18 @@ const ImageSwiperComponent = <T extends DefaultSwiperData>({
     onClick(images[event.realIndex]);
   };
 
-  const handleResize = (event: { size?: number }) => {
-    onImageHeightChange(event.size ?? 0);
-  };
-
   return (
     <>
       <Swiper
         loop
+        autoHeight
+        // style={{ height: '100%' }}
         direction="vertical"
         spaceBetween={16}
         slidesPerView={1}
         onSlideChange={handleChange}
         onSliderMove={handleMove}
         onClick={handleClick}
-        onResize={handleResize}
-        style={style}
         className={`position--${position}`}
       >
         {withControls && (
@@ -78,7 +68,7 @@ const ImageSwiperComponent = <T extends DefaultSwiperData>({
           </span>
         )}
         {images.map(({ image, id, alt }) => (
-          <SwiperSlide key={id}>
+          <SwiperSlide key={id} className="half-swiper">
             {({ isActive, isPrev, isNext }) => {
               if (!isActive && !isNext && !isPrev) {
                 return null;
