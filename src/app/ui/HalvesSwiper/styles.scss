@@ -1,6 +1,5 @@
 .halves-swiper {
   display: flex;
-  justify-content: space-around;
   width: 100%;
   height: 100%;
   max-width: 100%;
@@ -13,19 +12,7 @@
 .half {
   width: 50%;
   display: flex;
-
-  &--left {
-    justify-content: flex-end;
-  }
-
-  &--right {
-    justify-content: flex-start;
-  }
 }
-
-//.slide-image img {
-//  transform: scale(0.90);
-//}
 
 .half-swiper {
   display: flex;

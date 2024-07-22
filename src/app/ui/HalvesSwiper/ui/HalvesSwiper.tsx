@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef, useState } from 'react';
+import React, { memo, useCallback, useRef } from 'react';
 
 import type { SwipeEvent, DefaultSwiperData, ClickEvent } from '../types';
 import { useImagesState } from '../useImagesState';
@@ -72,7 +72,7 @@ const HalvesSwiperComponent = <
 
   return (
     <div className="halves-swiper">
-      <div className="half half--left">
+      <div className="half">
         <ImageSwiper
           position="left"
           images={left}
@@ -81,7 +81,7 @@ const HalvesSwiperComponent = <
           withControls={withControls}
         />
       </div>
-      <div className="half half--right">
+      <div className="half">
         <ImageSwiper
           position="right"
           images={right}
