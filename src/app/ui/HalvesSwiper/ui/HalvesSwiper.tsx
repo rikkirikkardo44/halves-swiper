@@ -8,10 +8,12 @@ import React, {
 } from 'react';
 
 import type { SwipeEvent, DefaultSwiperData, ClickEvent } from '../types';
-import 'swiper/scss';
-import '../styles.scss';
+import { useImagesState } from '../useImagesState';
 
 import { ImageSwiper } from './ImageSwiper';
+
+import 'swiper/scss';
+import '../styles.scss';
 
 /** Параметры компонента */
 type Props<T extends DefaultSwiperData = DefaultSwiperData> = {
@@ -31,18 +33,23 @@ type Props<T extends DefaultSwiperData = DefaultSwiperData> = {
  * Компонент выбора из двух половинок
  * @returns - jsx-element
  */
-const HalvesSwiperComponent = <T extends DefaultSwiperData>({
-  left,
-  right,
+const HalvesSwiperComponent = <
+  T extends DefaultSwiperData = DefaultSwiperData,
+>({
+  left: leftByProps,
+  right: rightByProps,
   onClick,
   onChange,
   withControls,
 }: Props<T>) => {
-  const activeLeft = useRef(left[0]);
-  const activeRight = useRef(right[0]);
+  const left = useImagesState(leftByProps);
+  const right = useImagesState(rightByProps);
 
   const [leftImageHeight, setLeftImageHeight] = useState(0);
   const [rightImageHeight, setRightImageHeight] = useState(0);
+
+  const activeLeft = useRef(left[0]);
+  const activeRight = useRef(right[0]);
 
   const onLeftImageLoad = useCallback((height: number) => {
     setLeftImageHeight(() => height);
