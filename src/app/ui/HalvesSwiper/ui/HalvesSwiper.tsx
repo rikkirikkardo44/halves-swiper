@@ -1,4 +1,11 @@
-import React, { memo, useCallback, useRef } from 'react';
+import React, {
+  type CSSProperties,
+  memo,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import type { SwipeEvent, DefaultSwiperData, ClickEvent } from '../types';
 import 'swiper/scss';
@@ -34,6 +41,17 @@ const HalvesSwiperComponent = <T extends DefaultSwiperData>({
   const activeLeft = useRef(left[0]);
   const activeRight = useRef(right[0]);
 
+  const [leftImageHeight, setLeftImageHeight] = useState(0);
+  const [rightImageHeight, setRightImageHeight] = useState(0);
+
+  const onLeftImageLoad = useCallback((height: number) => {
+    setLeftImageHeight(() => height);
+  }, []);
+
+  const onRightImageLoad = useCallback((height: number) => {
+    setRightImageHeight(() => height);
+  }, []);
+
   const handleLeftChange = useCallback(
     (value: T): void => {
       activeLeft.current = value;
@@ -63,6 +81,15 @@ const HalvesSwiperComponent = <T extends DefaultSwiperData>({
     [onClick],
   );
 
+  const height = Math.min(leftImageHeight, rightImageHeight);
+
+  const style = useMemo(
+    (): CSSProperties => ({
+      height: height ? `${height}px` : '100%',
+    }),
+    [height],
+  );
+
   return (
     <div className="halves-swiper">
       <div className="half">
@@ -71,7 +98,9 @@ const HalvesSwiperComponent = <T extends DefaultSwiperData>({
           images={left}
           onChange={handleLeftChange}
           onClick={handleClick}
+          onImageHeightChange={onLeftImageLoad}
           withControls={withControls}
+          style={style}
         />
       </div>
       <div className="half">
@@ -80,7 +109,9 @@ const HalvesSwiperComponent = <T extends DefaultSwiperData>({
           images={right}
           onChange={handleRightChange}
           onClick={handleClick}
+          onImageHeightChange={onRightImageLoad}
           withControls={withControls}
+          style={style}
         />
       </div>
     </div>

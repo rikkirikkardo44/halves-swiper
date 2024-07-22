@@ -90,10 +90,12 @@ export const App: React.FC = () => {
   const isTablet = useIsMobile(TABLET_SIZE);
 
   const handleChange = ({ value }: SwipeEvent): void => {
+    console.log('Swiped: ', { value });
     setCurrentChoice(value);
   };
 
   const handleClick = ({ value }: ClickEvent<ExternalType>): void => {
+    console.log('Clicked: ', { value });
     setClickedImages(value);
   };
 

@@ -1,12 +1,9 @@
-import React, { CSSProperties, memo, useRef, useState } from 'react';
+import React, { type CSSProperties, memo, useRef, useState } from 'react';
 import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react';
 
 import type { DefaultSwiperData } from '../types';
 
 import { SwipeButton } from './SwipeButton';
-
-/** Стили для свайпера */
-const SWIPER_STYLES: CSSProperties = { height: '100%' };
 
 /** Параметры компонентв */
 type Props<T extends DefaultSwiperData = DefaultSwiperData> = {
@@ -20,6 +17,10 @@ type Props<T extends DefaultSwiperData = DefaultSwiperData> = {
   position: 'left' | 'right';
   /** Признак использования UI кнопок */
   withControls?: boolean;
+  /** Стили */
+  style: CSSProperties;
+  /** Обработчик изменения высоты изображения */
+  onImageHeightChange: (height: number) => void;
 };
 
 /** Компонент вертикального свайпа изображения */
@@ -29,6 +30,8 @@ const ImageSwiperComponent = <T extends DefaultSwiperData>({
   onClick,
   position,
   withControls,
+  onImageHeightChange,
+  style,
 }: Props<T>) => {
   const [isSliding, setIsSliding] = useState(false);
   const prevIndex = useRef(0);
@@ -51,6 +54,10 @@ const ImageSwiperComponent = <T extends DefaultSwiperData>({
     onClick(images[event.realIndex]);
   };
 
+  const handleResize = (event: { size?: number }) => {
+    onImageHeightChange(event.size ?? 0);
+  };
+
   return (
     <>
       <Swiper
@@ -61,7 +68,8 @@ const ImageSwiperComponent = <T extends DefaultSwiperData>({
         onSlideChange={handleChange}
         onSliderMove={handleMove}
         onClick={handleClick}
-        style={SWIPER_STYLES}
+        onResize={handleResize}
+        style={style}
         className={`position--${position}`}
       >
         {withControls && (
