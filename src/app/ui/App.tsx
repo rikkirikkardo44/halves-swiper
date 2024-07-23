@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { TABLET_SIZE } from '@shared/constants';
 import { useIsMobile } from '@shared/hooks';
 
-import { HalvesSwiper, ClickEvent, SwipeEvent } from './HalvesSwiper';
+import { ClickEvent, HalvesSwiper, SwipeEvent } from './HalvesSwiper';
 
 type ExternalType = {
   id: number;
@@ -180,15 +180,13 @@ export const App: React.FC = () => {
         <img src={clickedImage?.image} alt="" height={'100px'} />
       </div>
 
-      <div className="swiper-container">
-        <HalvesSwiper
-          left={images.left}
-          right={images.right}
-          onClick={handleClick}
-          onChange={handleChange}
-          withControls={!isTablet}
-        />
-      </div>
+      <HalvesSwiper
+        left={images.left}
+        right={images.right}
+        onClick={handleClick}
+        onChange={handleChange}
+        withControls={!isTablet}
+      />
       <button onClick={handleImageShuffle}>Shuffle images</button>
     </div>
   );

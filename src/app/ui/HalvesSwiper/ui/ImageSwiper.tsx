@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react';
 
 import type { DefaultSwiperData } from '../types';
 
+import { ResizableImage } from './ResizableImage';
 import { SwipeButton } from './SwipeButton';
 
 /** Параметры компонентв */
@@ -17,6 +18,8 @@ type Props<T extends DefaultSwiperData = DefaultSwiperData> = {
   position: 'left' | 'right';
   /** Признак использования UI кнопок */
   withControls?: boolean;
+  /** Обработчик при ресайзе изображения */
+  onImageResize: (height: number) => void;
 };
 
 /** Компонент вертикального свайпа изображения */
@@ -26,6 +29,7 @@ const ImageSwiperComponent = <T extends DefaultSwiperData>({
   onClick,
   position,
   withControls,
+  onImageResize,
 }: Props<T>) => {
   const [isSliding, setIsSliding] = useState(false);
   const prevIndex = useRef(0);
@@ -52,10 +56,7 @@ const ImageSwiperComponent = <T extends DefaultSwiperData>({
     <>
       <Swiper
         loop
-        autoHeight
-        // style={{ height: '100%' }}
         direction="vertical"
-        spaceBetween={16}
         slidesPerView={1}
         onSlideChange={handleChange}
         onSliderMove={handleMove}
@@ -75,11 +76,12 @@ const ImageSwiperComponent = <T extends DefaultSwiperData>({
               }
 
               return (
-                <div
+                <ResizableImage
+                  src={image}
+                  alt={alt ?? `Image ${id}`}
                   className={`slide-image ${isSliding ? 'sliding' : ''}`.trim()}
-                >
-                  <img src={image} alt={alt ?? `Image ${id}`} />
-                </div>
+                  onResize={onImageResize}
+                />
               );
             }}
           </SwiperSlide>
