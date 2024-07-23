@@ -86,7 +86,7 @@ const HalvesSwiperComponent = <
     <div
       className="halves-swiper"
       style={{
-        height: height ? `${height}px` : '100%',
+        height: height ? `${height}px` : `${maxHeight}px`,
         maxHeight: `${maxHeight}px`,
         maxWidth: `${maxWidth}px`,
       }}
