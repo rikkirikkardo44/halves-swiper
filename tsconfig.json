@@ -41,8 +41,6 @@
     ]
   },
   "include": [
-    "src",
-    "@types",
-    "api-codegen.ts"
+    "src"
   ]
 }

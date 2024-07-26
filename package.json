@@ -4,9 +4,10 @@
   "description": "",
   "scripts": {
     "start": "npm run develop",
-    "build": "npm run production",
+    "build": "npm run build:types && npm run production",
+    "build:types": "dts-bundle-generator --umd-module-name HalvesSwiper  --out-file dist/HalvesSwiper.d.ts src/app/ui/HalvesSwiper/index.ts",
     "develop": "webpack serve --config ./webpack/app/develop",
-    "production": "webpack --config ./webpack/app/develop",
+    "production": "webpack --config ./webpack/app/production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:ts": "eslint src --color --ext .tsx,.ts --fix"
   },
@@ -35,6 +36,7 @@
     "babel-plugin-module-resolver": "4.1.0",
     "copy-webpack-plugin": "10.2.4",
     "css-loader": "6.7.1",
+    "dts-bundle-generator": "9.5.1",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.3",
     "img-loader": "4.0.0",

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "umd",
+    "declarationDir": "dist",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "jsx": "react",
+    "strict": true,
+    "moduleResolution": "node",
+    "target": "es5",
+    "lib": ["dom", "es2015"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/app/ui/HalvesSwiper/**/*"],
+  "exclude": ["node_modules", "src/**/*.test.ts", "src/**/*.test.tsx"]
+}

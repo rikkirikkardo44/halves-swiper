@@ -15,6 +15,8 @@ const appPaths = {
   appStyles: path.resolve(__dirname, '../../src/shared/styles'),
   // точка входа в приложение
   appIndex: path.resolve(__dirname, '../../src/index.tsx'),
+  // компонент
+  halvesSwiperPath: path.resolve(__dirname, '../../src/app/ui/HalvesSwiper/index.ts'),
   // точка входа в приложение в режиме разработки
   appDevIndex: path.resolve(__dirname, '../../src/index.tsx'),
   // HTML шаблон приложения
