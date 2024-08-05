@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -13,7 +12,7 @@ const config = merge(commonConfig, {
   devtool: 'inline-source-map',
   devServer: getConfig('devServer'),
   output: {
-    path: getConfig('appDist'),
+    path: getConfig('appBuild'),
     filename: '[name].bundle.js',
     publicPath: '/',
     clean: true,
