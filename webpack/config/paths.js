@@ -9,6 +9,8 @@ const appPaths = {
   appPages: path.resolve(__dirname, '../../src/pages'),
   // папка с билдом приложения
   appDist: path.resolve(__dirname, '../../dist'),
+  // папка с билдом приложения
+  appBuild: path.resolve(__dirname, '../../build'),
   // папка с ресурсами приложения (картинками шрифтами и пр.)
   appAssets: path.resolve(__dirname, '../../puplic'),
   // папка со стилями

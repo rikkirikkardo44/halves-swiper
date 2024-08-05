@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "npm run develop",
-    "build": "npm run build:types && npm run production",
+    "build": "npm run production",
+    "build:umd": "npm run build:types && webpack --config ./webpack/app/umd",
     "build:types": "dts-bundle-generator --umd-module-name HalvesSwiper  --out-file dist/HalvesSwiper.d.ts src/app/ui/HalvesSwiper/index.ts",
     "develop": "webpack serve --config ./webpack/app/develop",
     "production": "webpack --config ./webpack/app/production",

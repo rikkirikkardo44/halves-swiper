@@ -1,5 +1,7 @@
 const { merge } = require('webpack-merge');
 const { get } = require('lodash');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const packageJSON = require('../../package.json');
 
@@ -8,28 +10,54 @@ const getPackageConfig = (path, defaultValue = '') =>
 
 const getConfig = require('../config');
 const commonConfig = require('../common');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(commonConfig, {
   entry: [getConfig('halvesSwiperPath')],
   mode: 'production',
   output: {
-    path: getConfig('appDist'),
-    filename: 'HalvesSwiper.js',
-    library: 'HalvesSwiper',
-    libraryTarget: 'umd',
-    globalObject: 'this',
-    umdNamedDefine: true,
+    path: getConfig('appBuild'),
+    filename: '[name]-[fullhash].js',
+    publicPath: '/',
   },
-  externals: {
-    react: 'react',
-    'react-dom': 'react-dom',
+  optimization: {
+    runtimeChunk: true,
+    minimize: true,
+    splitChunks: {
+      chunks: 'async',
+      minSize: 20000,
+      minRemainingSize: 0,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
+    new HtmlWebpackPlugin({
+      template: getConfig('appHTMLTemplate'),
+      title: getConfig('appName'),
+      inject: true,
+    }), ,
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public',
+          filter: (filepath) => !filepath.includes('index.html'),
+        },
+      ],
     }),
   ],
 });
